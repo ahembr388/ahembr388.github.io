@@ -6,6 +6,7 @@
   <title>Austin's Portfolio</title>
   <link rel="icon" href="apple-touch-icon.png" type="image/png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     html, body { height: 100%; }
     body { display: flex; flex-direction: column; background-color: #f9f9f9; }
@@ -13,6 +14,29 @@
     nav a { margin-right: 15px; }
     footer { padding: 20px 0; background-color: #333; color: #fff; text-align: center; }
     .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; }
+    body.dark-mode footer {
+      background-color: #222;
+    }
+    body.dark-mode .navbar {
+      background-color: #222 !important;
+    }
+    body.dark-mode a {
+      color: #90caf9;
+    }
+    body.dark-mode .list-group-item {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+    body.dark-mode .btn-outline-primary,
+    body.dark-mode .btn-outline-info {
+      border-color: #90caf9;
+      color: #90caf9;
+    }
+    body.dark-mode .btn-outline-primary:hover,
+    body.dark-mode .btn-outline-info:hover {
+      background-color: #90caf9;
+      color: #121212;
+    }
   </style>
 </head>
 <body class="bg-light">
@@ -61,5 +85,31 @@
   <footer>
     &copy; 2025 Developer Portfolio — All rights reserved.
   </footer>
+  <script>
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const icon = document.getElementById('themeIcon');
+
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark-mode');
+      icon.classList.remove('bi-moon-fill');
+      icon.classList.add('bi-sun-fill');
+    }
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+
+      if (isDark) {
+        icon.classList.remove('bi-moon-fill');
+        icon.classList.add('bi-sun-fill');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        icon.classList.remove('bi-sun-fill');
+        icon.classList.add('bi-moon-fill');
+        localStorage.setItem('theme', 'light');
+      }
+    });
+  </script>
 </body>
 </html>
