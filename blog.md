@@ -5,6 +5,8 @@ title: Blog
 
 # Blog
 
+[← Back to Portfolio](index.html)
+
 <ul>
   {% for post in site.posts %}
     <li>
